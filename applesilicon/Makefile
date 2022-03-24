@@ -4,6 +4,9 @@
 #
 #
 
+PKG_INSTALL := brew install
+PKG_TOOLS   := gcc@11 sdl2
+
 ifeq "$(CFG)" ""
 	CFG=release
 endif
@@ -20,8 +23,8 @@ PUBLIC_SRC_DIR=$(SOURCE_DIR)/public
 BUILD_OBJ_DIR=$(BUILD_DIR)/obj
 
 ELF-GC-DYNSTR=./elf-gc-dynstr
-CPLUS=g++
-CPP_LIB:=-lstdc++ -ldl -lpthread
+CPLUS=g++-11
+CPP_LIB:=-lstdc++ -ldl -lpthread $(shell sdl2-config --libs)
 CLINK=$(CPLUS)
 
 CFG_CFLAGS := 
@@ -31,14 +34,15 @@ else
 	CFG_CFLAGS += -gdwarf-2 -g2 
 endif
 
-BASE_CFLAGS := -w -std=c++17 -fpermissive -fno-strict-aliasing -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DNO_MALLOC_OVERRIDE -fno-exceptions -fexpensive-optimizations -Werror=return-type
+BASE_CFLAGS := -w -std=c++17 -fpermissive -fno-strict-aliasing -DNO_VGUI -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DNO_MALLOC_OVERRIDE -fno-exceptions -fexpensive-optimizations -Werror=return-type
+BASE_CFLAGS += $(shell sdl2-config --cflags)
 
 SHLIBEXT=so
 SHLIBCFLAGS=
 ifeq "$(CFG)" "release"
-	SHLIBLDFLAGS="-shared -Wl,-Map,$@_map.txt"
+	SHLIBLDFLAGS="-shared"
 else
-	SHLIBLDFLAGS="-shared -gdwarf-2 -g2 -Wl,-Map,$@_map.txt"
+	SHLIBLDFLAGS="-shared -gdwarf-2 -g2"
 endif
 
 AR=ar
@@ -75,6 +79,9 @@ hl_cdll: build_dir
 
 hl: build_dir
 	$(MAKE_HL_LIB) CPLUS=$(CPLUS) CPP_LIB="$(CPP_LIB)" BUILD_DIR=$(BUILD_DIR) BUILD_OBJ_DIR=$(BUILD_OBJ_DIR) SOURCE_DIR=$(SOURCE_DIR) ENGINE_SRC_DIR=$(ENGINE_SRC_DIR) COMMON_SRC_DIR=$(COMMON_SRC_DIR) PM_SRC_DIR=$(PM_SRC_DIR) GAME_SHARED_SRC_DIR=$(GAME_SHARED_SRC_DIR) BASE_CFLAGS="$(BASE_CFLAGS)" SHLIBEXT=$(SHLIBEXT) SHLIBCFLAGS=$(SHLIBCFLAGS) SHLIBLDFLAGS=$(SHLIBLDFLAGS) PUBLIC_SRC_DIR=$(PUBLIC_SRC_DIR) CFG=$(CFG) CFG_CFLAGS="$(CFG_CFLAGS)" 
+
+brew_install_tools:
+	$(PKG_INSTALL) $(PKG_TOOLS)
 
 clean:
 	-rm -rf $(BUILD_OBJ_DIR)
