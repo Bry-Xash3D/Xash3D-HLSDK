@@ -667,8 +667,10 @@ bool CHudAmmo::MsgFunc_WeaponList(const char* pszName, int iSize, void* pbuf)
 // Slot button pressed
 void CHudAmmo::SlotInput(int iSlot)
 {
+#ifndef NO_VGUI
 	if (gViewPort && gViewPort->SlotInput(iSlot))
 		return;
+#endif
 
 	gWR.SelectSlot(iSlot, false, 1);
 }

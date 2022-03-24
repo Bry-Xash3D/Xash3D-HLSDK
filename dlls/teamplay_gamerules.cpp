@@ -66,8 +66,10 @@ CHalfLifeTeamplay::CHalfLifeTeamplay()
 	RecountTeams();
 }
 
+#ifndef NO_VOICE
 #include "voice_gamemgr.h"
 extern CVoiceGameMgr g_VoiceGameMgr;
+#endif
 
 void CHalfLifeTeamplay::Think()
 {
@@ -78,7 +80,9 @@ void CHalfLifeTeamplay::Think()
 	int frags_remaining = 0;
 	int time_remaining = 0;
 
+#ifndef NO_VOICE
 	g_VoiceGameMgr.Update(gpGlobals->frametime);
+#endif
 
 	if (g_fGameOver) // someone else quit the game already
 	{
@@ -143,8 +147,10 @@ void CHalfLifeTeamplay::Think()
 //=========================================================
 bool CHalfLifeTeamplay::ClientCommand(CBasePlayer* pPlayer, const char* pcmd)
 {
+#ifndef NO_VOICE
 	if (g_VoiceGameMgr.ClientCommand(pPlayer, pcmd))
 		return true;
+#endif
 
 	if (FStrEq(pcmd, "menuselect"))
 	{

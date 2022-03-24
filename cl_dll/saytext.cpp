@@ -99,8 +99,10 @@ bool CHudSayText::Draw(float flTime)
 {
 	int y = Y_START;
 
+#ifndef NO_VGUI
 	if ((gViewPort && !gViewPort->AllowedToPrintText()) || 0 == m_HUD_saytext->value)
 		return true;
+#endif
 
 	// make sure the scrolltime is within reasonable bounds,  to guard against the clock being reset
 	flScrollTime = V_min(flScrollTime, flTime + m_HUD_saytext_time->value);
@@ -187,10 +189,12 @@ void CHudSayText::SayTextPrint(const char* pszBuf, int iBufSize, int clientIndex
 	// Print it straight to the console
 	ConsolePrint(pszBuf);
 
+#ifndef NO_VGUI
 	if (gViewPort && gViewPort->AllowedToPrintText() == false)
 	{
 		return;
 	}
+#endif
 
 	int i;
 	// find an empty string slot

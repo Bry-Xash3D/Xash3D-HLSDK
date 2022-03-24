@@ -16,6 +16,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "vgui_int.h"
 #include "VGUI_Font.h"
 #include "VGUI_ScrollPanel.h"
@@ -391,3 +393,5 @@ void CTeamMenuPanel::SetActiveInfo(int iInput)
 
 	m_pScrollPanel->validate();
 }
+
+#endif

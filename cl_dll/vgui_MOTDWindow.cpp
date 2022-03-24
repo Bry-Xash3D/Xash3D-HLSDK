@@ -16,6 +16,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "VGUI_Font.h"
 #include "VGUI_ScrollPanel.h"
 #include "VGUI_TextImage.h"
@@ -143,3 +145,5 @@ CMessageWindowPanel::CMessageWindowPanel(const char* szMOTD, const char* szTitle
 	pButton->addActionSignal(new CMenuHandler_TextWindow(HIDE_TEXTWINDOW));
 	pButton->setParent(this);
 }
+
+#endif

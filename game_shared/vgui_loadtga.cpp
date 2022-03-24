@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "../cl_dll/cl_dll.h"
 #include "VGUI.h"
 #include "vgui_loadtga.h"
@@ -106,3 +108,5 @@ vgui::BitmapTGA* vgui_LoadTGANoInvertAlpha(char const* pFilename)
 
 	return pRet;
 }
+
+#endif

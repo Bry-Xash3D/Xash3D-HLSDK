@@ -38,7 +38,10 @@
 
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
+
+#ifndef NO_VGUI
 TeamFortressViewport* gViewPort = NULL;
+#endif
 
 
 #include "particleman.h"
@@ -147,7 +150,9 @@ int DLLEXPORT HUD_VidInit()
 	//	RecClHudVidInit();
 	gHUD.VidInit();
 
+#ifndef NO_VGUI
 	VGui_Startup();
+#endif
 
 	return 1;
 }
@@ -167,7 +172,10 @@ void DLLEXPORT HUD_Init()
 	//	RecClHudInit();
 	InitInput();
 	gHUD.Init();
+
+#ifndef NO_VGUI
 	Scheme_Init();
+#endif
 }
 
 
@@ -239,7 +247,9 @@ void DLLEXPORT HUD_Frame(double time)
 {
 	//	RecClHudFrame(time);
 
+#ifndef NO_VOICE
 	GetClientVoiceMgr()->Frame(time);
+#endif
 }
 
 
@@ -255,7 +265,9 @@ void DLLEXPORT HUD_VoiceStatus(int entindex, qboolean bTalking)
 {
 	////	RecClVoiceStatus(entindex, bTalking);
 
+#ifndef NO_VOICE
 	GetClientVoiceMgr()->UpdateSpeakerStatus(entindex, 0 != bTalking);
+#endif
 }
 
 /*
@@ -337,7 +349,9 @@ extern "C" void DLLEXPORT F(void* pv)
 			HUD_VoiceStatus,
 			HUD_DirectorMessage,
 			HUD_GetStudioModelInterface,
+#ifndef NO_VGUI
 			HUD_ChatInputPosition,
+#endif
 		};
 
 	*pcldll_func = cldll_func;
@@ -364,25 +378,31 @@ public:
 	// ingame voice manipulation
 	bool IsPlayerGameVoiceMuted(int playerIndex) override
 	{
+#ifndef NO_VOICE
 		if (GetClientVoiceMgr())
 			return GetClientVoiceMgr()->IsPlayerBlocked(playerIndex);
+#endif
 		return false;
 	}
 
 	void MutePlayerGameVoice(int playerIndex) override
 	{
+#ifndef NO_VOICE
 		if (GetClientVoiceMgr())
 		{
 			GetClientVoiceMgr()->SetPlayerBlockedState(playerIndex, true);
 		}
+#endif
 	}
 
 	void UnmutePlayerGameVoice(int playerIndex) override
 	{
+#ifndef NO_VOICE
 		if (GetClientVoiceMgr())
 		{
 			GetClientVoiceMgr()->SetPlayerBlockedState(playerIndex, false);
 		}
+#endif
 	}
 };
 

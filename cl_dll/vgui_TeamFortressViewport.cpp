@@ -15,6 +15,9 @@
 //
 // $NoKeywords: $
 //=============================================================================
+
+#ifndef NO_VGUI
+
 #include <VGUI_Cursor.h>
 #include <VGUI_Frame.h>
 #include <VGUI_Label.h>
@@ -59,12 +62,15 @@
 
 extern bool g_iVisibleMouse;
 class CCommandMenu;
+#endif
+
 int g_iPlayerClass;
 int g_iTeamNumber;
 int g_iUser1 = 0;
 int g_iUser2 = 0;
 int g_iUser3 = 0;
 
+#ifndef NO_VGUI
 // Scoreboard positions
 #define SBOARD_INDENT_X XRES(104)
 #define SBOARD_INDENT_Y YRES(40)
@@ -81,6 +87,7 @@ extern CMenuPanel* CMessageWindowPanel_Create(const char* szMOTD, const char* sz
 extern float* GetClientColor(int clientIndex);
 
 using namespace vgui;
+#endif
 
 // Team Colors
 int iNumberOfTeamColors = 5;
@@ -94,6 +101,7 @@ int iTeamColors[5][3] =
 };
 
 
+#ifndef NO_VGUI
 // Used for Class specific buttons
 const char* sTFClasses[] =
 	{
@@ -2151,3 +2159,5 @@ bool TeamFortressViewport::MsgFunc_SpecFade(const char* pszName, int iSize, void
 
 	return true;
 }
+
+#endif

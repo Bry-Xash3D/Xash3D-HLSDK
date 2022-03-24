@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #include "../cl_dll/hud.h"
 
 #include "cl_util.h"
@@ -396,4 +398,4 @@ void CVoiceStatusHud::UpdateSpeakerStatus(int entindex, bool bTalking)
 	RepositionLabels();
 }
 
-
+#endif

@@ -1,4 +1,6 @@
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include<VGUI_Panel.h>
@@ -59,8 +61,12 @@ void ScaleColors( int &r, int &g, int &b, int a );
 extern const char *sTFClassSelection[];
 extern int sTFValidClassInts[];
 extern const char *sLocalisedClasses[];
+#endif
+
 extern int iTeamColors[5][3];
 extern int iNumberOfTeamColors;
+
+#ifndef NO_VGUI
 extern TeamFortressViewport *gViewPort;
 
 
@@ -1731,3 +1737,5 @@ public:
 		FillRGBA(x, iYPos + 5, HealthWidth / 10, gHUD.m_iFontHeight, 255, 160, 0, a);
 	}
 };
+
+#endif

@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #pragma once
 
 #include "cdll_dll.h"
@@ -13,3 +15,5 @@
 constexpr int VOICE_MAX_PLAYERS_DW = (MAX_PLAYERS / 32) + ((MAX_PLAYERS & 31) != 0 ? 1 : 0);
 
 typedef CBitVec<MAX_PLAYERS> CPlayerBitVec;
+
+#endif

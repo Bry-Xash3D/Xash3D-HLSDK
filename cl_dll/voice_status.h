@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #pragma once
 
 #include "VGUI_Label.h"
@@ -220,3 +222,5 @@ public:
 
 // Get the (global) voice manager. 
 CVoiceStatus* GetClientVoiceMgr();
+
+#endif

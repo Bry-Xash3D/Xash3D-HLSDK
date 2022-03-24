@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #include <string.h>
 #include <stdio.h>
 #include "Platform.h"
@@ -199,3 +201,5 @@ CVoiceBanMgr::BannedPlayer* CVoiceBanMgr::AddBannedPlayer(char const playerID[16
 	pNew->m_pPrev->m_pNext = pNew->m_pNext->m_pPrev = pNew;
 	return pNew;
 }
+
+#endif

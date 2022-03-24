@@ -367,8 +367,10 @@ int DLLEXPORT HUD_Key_Event(int down, int keynum, const char* pszCurrentBinding)
 {
 	//	RecClKeyEvent(down, keynum, pszCurrentBinding);
 
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->KeyInput(0 != down, keynum, pszCurrentBinding));
+#endif
 
 	return 1;
 }
@@ -507,19 +509,23 @@ void IN_Impulse()
 void IN_ScoreDown()
 {
 	KeyDown(&in_score);
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->ShowScoreBoard();
 	}
+#endif
 }
 
 void IN_ScoreUp()
 {
 	KeyUp(&in_score);
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->HideScoreBoard();
 	}
+#endif
 }
 
 void IN_MLookUp()
@@ -725,9 +731,11 @@ void DLLEXPORT CL_CreateMove(float frametime, struct usercmd_s* cmd, int active)
 	//
 	cmd->buttons = CL_ButtonBits(true);
 
+#ifndef NO_VOICE
 	// If they're in a modal dialog, ignore the attack button.
 	if (GetClientVoiceMgr()->IsInSquelchMode())
 		cmd->buttons &= ~IN_ATTACK;
+#endif
 
 	// Using joystick?
 	if (0 != in_joystick->value)

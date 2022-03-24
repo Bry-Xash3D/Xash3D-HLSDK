@@ -16,6 +16,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "hud.h"
 #include "vgui_SchemeManager.h"
 #include "cvardef.h"
@@ -559,3 +561,5 @@ void CSchemeManager::getBorderColor(SchemeHandle_t schemeHandle, int& r, int& g,
 	b = pScheme->borderColor[2];
 	a = pScheme->borderColor[3];
 }
+
+#endif

@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #ifndef VOICE_STATUS_HUD_H
 #define VOICE_STATUS_HUD_H
 #pragma once
@@ -152,3 +154,5 @@ private:
 
 
 #endif // VOICE_STATUS_HUD_H
+
+#endif

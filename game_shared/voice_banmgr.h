@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #pragma once
 
 // This class manages the (persistent) list of squelched players.
@@ -44,3 +46,5 @@ protected:
 protected:
 	BannedPlayer m_PlayerHash[256];
 };
+
+#endif

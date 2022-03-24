@@ -33,6 +33,7 @@
 hud_player_info_t g_PlayerInfoList[MAX_PLAYERS_HUD + 1];	// player info from the engine
 extra_player_info_t g_PlayerExtraInfo[MAX_PLAYERS_HUD + 1]; // additional player info sent directly to the client dll
 
+#ifndef NO_VOICE
 class CHLVoiceStatusHelper : public IVoiceStatusHelper
 {
 public:
@@ -59,7 +60,9 @@ public:
 
 	void UpdateCursorState() override
 	{
+#ifndef NO_VGUI
 		gViewPort->UpdateCursorState();
+#endif
 	}
 
 	int GetAckIconHeight() override
@@ -69,13 +72,16 @@ public:
 
 	bool CanShowSpeakerLabels() override
 	{
+#ifndef NO_VGUI
 		if (gViewPort && gViewPort->m_pScoreBoard)
 			return !gViewPort->m_pScoreBoard->isVisible();
 		else
+#endif
 			return false;
 	}
 };
 static CHLVoiceStatusHelper g_VoiceStatusHelper;
+#endif
 
 
 extern client_sprite_t* GetSpriteList(client_sprite_t* pList, const char* psz, int iRes, int iCount);
@@ -135,147 +141,187 @@ int __MsgFunc_GameMode(const char* pszName, int iSize, void* pbuf)
 // TFFree Command Menu
 void __CmdFunc_OpenCommandMenu()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->ShowCommandMenu(gViewPort->m_StandardMenu);
 	}
+#endif
 }
 
 // TFC "special" command
 void __CmdFunc_InputPlayerSpecial()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->InputPlayerSpecial();
 	}
+#endif
 }
 
 void __CmdFunc_CloseCommandMenu()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->InputSignalHideCommandMenu();
 	}
+#endif
 }
 
 void __CmdFunc_ForceCloseCommandMenu()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->HideCommandMenu();
 	}
+#endif
 }
 
 // TFFree Command Menu Message Handlers
 int __MsgFunc_ValClass(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_ValClass(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_TeamNames(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_TeamNames(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_Feign(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_Feign(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_Detpack(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_Detpack(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_VGUIMenu(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_VGUIMenu(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_MOTD(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_MOTD(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_BuildSt(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_BuildSt(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_RandomPC(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_RandomPC(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_ServerName(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_ServerName(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_ScoreInfo(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_ScoreInfo(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_TeamScore(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_TeamScore(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_TeamInfo(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_TeamInfo(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_Spectator(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_Spectator(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_SpecFade(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_SpecFade(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_ResetFade(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_ResetFade(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
 int __MsgFunc_AllowSpec(const char* pszName, int iSize, void* pbuf)
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 		return static_cast<int>(gViewPort->MsgFunc_AllowSpec(pszName, iSize, pbuf));
+#endif
 	return 0;
 }
 
@@ -367,7 +413,9 @@ void CHud::Init()
 	m_AmmoSecondary.Init();
 	m_TextMessage.Init();
 	m_StatusIcons.Init();
+#ifndef NO_VGUI
 	GetClientVoiceMgr()->Init(&g_VoiceStatusHelper, (vgui::Panel**)&gViewPort);
+#endif
 
 	m_Menu.Init();
 
@@ -512,7 +560,9 @@ void CHud::VidInit()
 	m_AmmoSecondary.VidInit();
 	m_TextMessage.VidInit();
 	m_StatusIcons.VidInit();
+#ifndef NO_VOICE
 	GetClientVoiceMgr()->VidInit();
+#endif
 }
 
 bool CHud::MsgFunc_Logo(const char* pszName, int iSize, void* pbuf)

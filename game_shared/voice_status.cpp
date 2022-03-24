@@ -1,4 +1,6 @@
 
+#ifndef NO_VOICE
+
 #include <stdio.h>
 #include <string.h>
 
@@ -465,3 +467,4 @@ void CVoiceStatus::SetPlayerBlockedState(int iPlayer, bool blocked)
 	UpdateServerState(false);
 }
 
+#endif

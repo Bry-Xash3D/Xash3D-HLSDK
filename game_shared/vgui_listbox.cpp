@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "vgui_listbox.h"
 
 
@@ -203,3 +205,5 @@ int CListBox::GetScrollMax()
 
 	return m_iScrollMax;
 }
+
+#endif

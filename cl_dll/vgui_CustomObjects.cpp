@@ -16,6 +16,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "VGUI_Font.h"
 
 #include "hud.h"
@@ -533,3 +535,5 @@ void CMenuHandler_StringCommandClassSelect::actionPerformed(Panel* panel)
 	if (bAutoKill && g_iPlayerClass != 0)
 		gEngfuncs.pfnClientCmd("kill");
 }
+
+#endif

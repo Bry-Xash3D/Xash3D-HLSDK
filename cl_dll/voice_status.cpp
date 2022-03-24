@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #include "hud.h"
 
 #include "cl_util.h"
@@ -874,3 +876,5 @@ void CVoiceStatus::SetPlayerBlockedState(int iPlayer, bool blocked)
 	m_BanMgr.SetPlayerBan(playerID, blocked);
 	UpdateServerState(false);
 }
+
+#endif

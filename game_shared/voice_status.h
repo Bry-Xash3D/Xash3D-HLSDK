@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #pragma once
 
 #include "voice_common.h"
@@ -185,3 +187,5 @@ CVoiceStatus* GetClientVoice();
 
 // Get the (global) voice manager.
 IVoiceHud* GetClientVoiceHud();
+
+#endif

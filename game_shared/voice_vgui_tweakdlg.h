@@ -5,6 +5,9 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+#ifndef NO_VOICE
+
 #ifndef VOICE_VGUI_TWEAKDLG_H
 #define VOICE_VGUI_TWEAKDLG_H
 #ifdef _WIN32
@@ -23,3 +26,6 @@ CMenuPanel* GetVoiceTweakDlg();
 
 
 #endif // VOICE_VGUI_TWEAKDLG_H
+
+#endif
+#endif

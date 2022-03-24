@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include "VGUI_InputSignal.h"
@@ -28,3 +30,5 @@ namespace vgui
 		virtual void keyFocusTicked(Panel* panel)						{}
 	};
 }
+
+#endif

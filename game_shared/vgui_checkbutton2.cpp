@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include <stdarg.h>
 #include <stdio.h>
 #include "Platform.h"
@@ -191,3 +193,5 @@ void CCheckButton2::mousePressed(MouseCode code, Panel* panel)
 {
 	internalMousePressed(code);
 }
+
+#endif

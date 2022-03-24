@@ -113,12 +113,14 @@ void SpectatorSpray()
 }
 void SpectatorHelp()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		gViewPort->ShowVGUIMenu(MENU_SPECHELP);
 	}
 	else
 	{
+#endif
 		char* text = CHudTextMessage::BufferedLocaliseTextString("#Spec_Help_Text");
 
 		if (text)
@@ -130,7 +132,9 @@ void SpectatorHelp()
 				text++;
 			}
 		}
+#ifndef NO_VGUI
 	}
+#endif
 }
 
 void SpectatorMenu()
@@ -141,11 +145,14 @@ void SpectatorMenu()
 		return;
 	}
 
+#ifndef NO_VGUI
 	gViewPort->m_pSpectatorPanel->ShowMenu(atoi(gEngfuncs.Cmd_Argv(1)) != 0);
+#endif
 }
 
 void ToggleScores()
 {
+#ifndef NO_VGUI
 	if (gViewPort)
 	{
 		if (gViewPort->IsScoreBoardVisible())
@@ -157,6 +164,7 @@ void ToggleScores()
 			gViewPort->ShowScoreBoard();
 		}
 	}
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -638,7 +646,9 @@ bool CHudSpectator::Draw(float flTime)
 		return true;
 
 	// make sure we have player info
+#ifndef NO_VGUI
 	gViewPort->GetAllPlayersInfo();
+#endif
 
 
 	// loop through all the players and draw additional infos to their sprites on the map
@@ -796,13 +806,17 @@ void CHudSpectator::DirectorMessage(int iSize, void* pbuf)
 		m_iSpectatorNumber = READ_LONG(); // total number of spectator
 		READ_WORD();					  // total number of relay proxies
 
+#ifndef NO_VGUI
 		gViewPort->UpdateSpectatorPanel();
+#endif
 		break;
 
 	case DRC_CMD_BANNER:
 		// gEngfuncs.Con_DPrintf("GUI: Banner %s\n",READ_STRING() ); // name of banner tga eg gfx/temp/7454562234563475.tga
+#ifndef NO_VGUI
 		gViewPort->m_pSpectatorPanel->m_TopBanner->LoadImage(READ_STRING());
 		gViewPort->UpdateSpectatorPanel();
+#endif
 		break;
 
 	case DRC_CMD_STUFFTEXT:
@@ -905,7 +919,9 @@ void CHudSpectator::FindNextPlayer(bool bReverse)
 	int iDir = bReverse ? -1 : 1;
 
 	// make sure we have player info
+#ifndef NO_VGUI
 	gViewPort->GetAllPlayersInfo();
+#endif
 
 
 	do
@@ -946,7 +962,9 @@ void CHudSpectator::FindNextPlayer(bool bReverse)
 	}
 
 	iJumpSpectator = true;
+#ifndef NO_VGUI
 	gViewPort->MsgFunc_ResetFade(NULL, 0, NULL);
+#endif
 }
 
 
@@ -968,7 +986,9 @@ void CHudSpectator::FindPlayer(const char* name)
 	g_iUser2 = 0;
 
 	// make sure we have player info
+#ifndef NO_VGUI
 	gViewPort->GetAllPlayersInfo();
+#endif
 
 	cl_entity_t* pEnt = NULL;
 
@@ -1003,7 +1023,9 @@ void CHudSpectator::FindPlayer(const char* name)
 	}
 
 	iJumpSpectator = true;
+#ifndef NO_VGUI
 	gViewPort->MsgFunc_ResetFade(NULL, 0, NULL);
+#endif
 }
 
 void CHudSpectator::HandleButtonsDown(int ButtonPressed)
@@ -1015,6 +1037,7 @@ void CHudSpectator::HandleButtonsDown(int ButtonPressed)
 
 	// gEngfuncs.Con_Printf(" HandleButtons:%i\n", ButtonPressed );
 
+#ifndef NO_VGUI
 	if (!gViewPort)
 		return;
 
@@ -1102,10 +1125,12 @@ void CHudSpectator::HandleButtonsDown(int ButtonPressed)
 	}
 
 	m_flNextObserverInput = time + 0.2;
+#endif
 }
 
 void CHudSpectator::HandleButtonsUp(int ButtonPressed)
 {
+#ifndef NO_VGUI
 	if (!gViewPort)
 		return;
 
@@ -1117,6 +1142,7 @@ void CHudSpectator::HandleButtonsUp(int ButtonPressed)
 
 	if ((ButtonPressed & (IN_MOVELEFT | IN_MOVERIGHT)) != 0)
 		m_moveDelta = 0.0f;
+#endif
 }
 
 void CHudSpectator::SetModes(int iNewMainMode, int iNewInsetMode)
@@ -1219,7 +1245,9 @@ void CHudSpectator::SetModes(int iNewMainMode, int iNewInsetMode)
 			SetCrosshair(0, m_crosshairRect, 0, 0, 0);
 		}
 
+#ifndef NO_VGUI
 		gViewPort->MsgFunc_ResetFade(NULL, 0, NULL);
+#endif
 
 		char string[128];
 		sprintf(string, "#Spec_Mode%d", g_iUser1);
@@ -1227,7 +1255,9 @@ void CHudSpectator::SetModes(int iNewMainMode, int iNewInsetMode)
 		gHUD.m_TextMessage.MsgFunc_TextMsg(NULL, strlen(string) + 1, string);
 	}
 
+#ifndef NO_VGUI
 	gViewPort->UpdateSpectatorPanel();
+#endif
 }
 
 bool CHudSpectator::IsActivePlayer(cl_entity_t* ent)
@@ -1892,7 +1922,9 @@ void CHudSpectator::CheckSettings()
 		m_pip->value = INSET_OFF;
 
 	// draw small border around inset view, adjust upper black bar
+#ifndef NO_VGUI
 	gViewPort->m_pSpectatorPanel->EnableInsetView(m_pip->value != INSET_OFF);
+#endif
 }
 
 int CHudSpectator::ToggleInset(bool allowOff)

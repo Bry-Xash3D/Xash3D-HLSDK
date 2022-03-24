@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
 
 #include "vgui_scrollbar2.h"
 #include "vgui_slider2.h"
@@ -310,3 +311,5 @@ void ScrollBar2::validate()
 	getSize(wide, tall);
 	setSize(wide, tall);
 }
+
+#endif

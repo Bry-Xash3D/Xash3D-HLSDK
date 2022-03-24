@@ -33,6 +33,7 @@
 #define WEAPON_RESPAWN_TIME 20
 #define AMMO_RESPAWN_TIME 20
 
+#ifndef NO_VOICE
 CVoiceGameMgr g_VoiceGameMgr;
 
 class CMultiplayGameMgrHelper : public IVoiceGameMgrHelper
@@ -52,6 +53,7 @@ public:
 	}
 };
 static CMultiplayGameMgrHelper g_GameMgrHelper;
+#endif
 
 //*********************************************************
 // Rules for the half-life multiplayer game.
@@ -59,7 +61,9 @@ static CMultiplayGameMgrHelper g_GameMgrHelper;
 
 CHalfLifeMultiplay::CHalfLifeMultiplay()
 {
+#ifndef NO_VOICE
 	g_VoiceGameMgr.Init(&g_GameMgrHelper, gpGlobals->maxClients);
+#endif
 
 	RefreshSkillData();
 
@@ -94,8 +98,10 @@ CHalfLifeMultiplay::CHalfLifeMultiplay()
 
 bool CHalfLifeMultiplay::ClientCommand(CBasePlayer* pPlayer, const char* pcmd)
 {
+#ifndef NO_VOICE
 	if (g_VoiceGameMgr.ClientCommand(pPlayer, pcmd))
 		return true;
+#endif
 
 	return CGameRules::ClientCommand(pPlayer, pcmd);
 }
@@ -165,7 +171,9 @@ void CHalfLifeMultiplay::RefreshSkillData()
 //=========================================================
 void CHalfLifeMultiplay::Think()
 {
+#ifndef NO_VOICE
 	g_VoiceGameMgr.Update(gpGlobals->frametime);
+#endif
 
 	///// Check game rules /////
 	static int last_frags;
@@ -320,8 +328,10 @@ bool CHalfLifeMultiplay::FShouldSwitchWeapon(CBasePlayer* pPlayer, CBasePlayerIt
 //=========================================================
 bool CHalfLifeMultiplay::ClientConnected(edict_t* pEntity, const char* pszName, const char* pszAddress, char szRejectReason[128])
 {
+#ifndef NO_VOICE
 	g_VoiceGameMgr.ClientConnected(pEntity);
 	return true;
+#endif
 }
 
 void CHalfLifeMultiplay::UpdateGameMode(CBasePlayer* pPlayer)

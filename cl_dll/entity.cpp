@@ -309,7 +309,9 @@ void DLLEXPORT HUD_CreateEntities()
 	// Add in any game specific objects
 	Game_AddObjects();
 
+#ifndef NO_VOICE
 	GetClientVoiceMgr()->CreateEntities();
+#endif
 }
 
 

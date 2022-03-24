@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #pragma once
 
 #include "voice_common.h"
@@ -71,3 +73,5 @@ private:
 	int					m_nMaxPlayers;
 	double				m_UpdateInterval;						// How long since the last update.
 };
+
+#endif

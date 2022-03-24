@@ -5,6 +5,9 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+#ifndef NO_VOICE
+
 #include "../cl_dll/hud.h"
 #include "../cl_dll/cl_util.h"
 #include "../cl_dll/vgui_teamfortressviewport.h"
@@ -287,3 +290,5 @@ void CVoiceVGUITweakDlg::StateChanged(CCheckButton2 *pButton)
 	}
 }
 
+#endif
+#endif

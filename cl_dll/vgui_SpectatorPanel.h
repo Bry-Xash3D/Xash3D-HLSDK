@@ -2,6 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include <VGUI_Panel.h>
@@ -105,3 +107,5 @@ public:
 		m_pFather->ActionSignal(m_cmd);
 	}
 };
+
+#endif

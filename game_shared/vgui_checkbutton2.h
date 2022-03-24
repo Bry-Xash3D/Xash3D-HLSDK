@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include "VGUI_Label.h"
@@ -90,3 +92,5 @@ public:
 
 
 }
+
+#endif

@@ -186,8 +186,10 @@ bool CHudTextMessage::MsgFunc_TextMsg(const char* pszName, int iSize, void* pbuf
 	StripEndNewlineFromString(sstr4);
 	char* psz = szBuf[5];
 
+#ifndef NO_VGUI
 	if (gViewPort && !gViewPort->AllowedToPrintText())
 		return true;
+#endif
 
 	switch (msg_dest)
 	{

@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include <assert.h>
 #include "vgui_grid.h"
 
@@ -395,3 +397,5 @@ bool CGrid::getCellAtPoint(int worldX, int worldY, int& row, int& col)
 
 	return false;
 }
+
+#endif

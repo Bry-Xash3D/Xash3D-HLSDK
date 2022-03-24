@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "vgui_helpers.h"
 
 
@@ -39,3 +41,5 @@ void AlignPanel(Panel* pChild, Panel* pParent, int alignment)
 	else if (alignment == Label::a_center)
 		pChild->setPos(xCenter, yCenter);
 }
+
+#endif

@@ -34,10 +34,10 @@ else
 	CFG_CFLAGS += -gdwarf-2 -g2 
 endif
 
-BASE_CFLAGS := -w -std=c++17 -fpermissive -fno-strict-aliasing -DNO_VGUI -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DNO_MALLOC_OVERRIDE -fno-exceptions -fexpensive-optimizations -Werror=return-type
+BASE_CFLAGS := -w -std=c++17 -fpermissive -fno-strict-aliasing -DNO_VGUI -DNO_VOICE -DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DNO_MALLOC_OVERRIDE -fno-exceptions -fexpensive-optimizations -Werror=return-type
 BASE_CFLAGS += $(shell sdl2-config --cflags)
 
-SHLIBEXT=so
+SHLIBEXT=dylib
 SHLIBCFLAGS=
 ifeq "$(CFG)" "release"
 	SHLIBLDFLAGS="-shared"

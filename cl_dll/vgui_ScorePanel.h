@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include <VGUI_Panel.h>
@@ -300,3 +302,5 @@ public:
 
 	friend class CLabelHeader;
 };
+
+#endif

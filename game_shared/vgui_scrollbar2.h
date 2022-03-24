@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include <VGUI.h>
@@ -58,3 +60,5 @@ protected:
 };
 
 }
+
+#endif

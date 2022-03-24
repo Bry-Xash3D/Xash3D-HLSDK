@@ -140,9 +140,11 @@ bool CHudMenu::Draw(float flTime)
 		}
 	}
 
+#ifndef NO_VGUI
 	// don't draw the menu if the scoreboard is being shown
 	if (gViewPort && gViewPort->IsScoreBoardVisible())
 		return true;
+#endif
 
 	// draw the menu, along the left-hand side of the screen
 

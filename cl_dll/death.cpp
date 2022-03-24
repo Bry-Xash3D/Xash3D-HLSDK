@@ -118,6 +118,7 @@ bool CHudDeathNotice::Draw(float flTime)
 
 		rgDeathNoticeList[i].flDisplayTime = V_min(rgDeathNoticeList[i].flDisplayTime, gHUD.m_flTime + DEATHNOTICE_DISPLAY_TIME);
 
+#ifndef NO_VGUI
 		// Only draw if the viewport will let me
 		if (gViewPort && gViewPort->AllowedToPrintText())
 		{
@@ -161,6 +162,7 @@ bool CHudDeathNotice::Draw(float flTime)
 				x = DrawConsoleString(x, y, rgDeathNoticeList[i].szVictim);
 			}
 		}
+#endif
 	}
 
 	return true;
@@ -180,8 +182,10 @@ bool CHudDeathNotice::MsgFunc_DeathMsg(const char* pszName, int iSize, void* pbu
 	strcpy(killedwith, "d_");
 	strncat(killedwith, READ_STRING(), 32);
 
+#ifndef NO_VGUI
 	if (gViewPort)
 		gViewPort->DeathMsg(killer, victim);
+#endif
 
 	gHUD.m_Spectator.DeathMessage(victim);
 	int i;
@@ -196,8 +200,10 @@ bool CHudDeathNotice::MsgFunc_DeathMsg(const char* pszName, int iSize, void* pbu
 		i = MAX_DEATHNOTICES - 1;
 	}
 
+#ifndef NO_VGUI
 	if (gViewPort)
 		gViewPort->GetAllPlayersInfo();
+#endif
 
 	// Get the Killer's name
 	const char* killer_name = g_PlayerInfoList[killer].name;

@@ -101,6 +101,7 @@ bool CHud::Redraw(float flTime, bool intermission)
 	if (m_flTimeDelta < 0)
 		m_flTimeDelta = 0;
 
+#ifndef NO_VGUI
 	// Bring up the scoreboard during intermission
 	if (gViewPort)
 	{
@@ -125,6 +126,7 @@ bool CHud::Redraw(float flTime, bool intermission)
 				m_flShotTime = flTime + 1.0; // Take a screenshot in a second
 		}
 	}
+#endif
 
 	if (0 != m_flShotTime && m_flShotTime < flTime)
 	{

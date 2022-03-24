@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #include "vgui_int.h"
 #include <VGUI_Label.h>
 #include <VGUI_BorderLayout.h>
@@ -69,3 +71,5 @@ void VGui_Shutdown()
 	delete gViewPort;
 	gViewPort = NULL;
 }
+
+#endif

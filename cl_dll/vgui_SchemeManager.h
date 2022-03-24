@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VGUI
+
 #pragma once
 
 #include <VGUI_Font.h>
@@ -52,3 +54,5 @@ private:
 
 	CScheme* getSafeScheme(SchemeHandle_t schemeHandle);
 };
+
+#endif

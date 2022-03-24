@@ -5,6 +5,8 @@
 // $NoKeywords: $
 //=============================================================================
 
+#ifndef NO_VOICE
+
 #include "extdll.h"
 #include "voice_gamemgr.h"
 #include <assert.h>
@@ -272,3 +274,5 @@ void CVoiceGameMgr::UpdateMasks()
 		}
 	}
 }
+
+#endif
